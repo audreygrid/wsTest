@@ -12,7 +12,8 @@
     <ul id="messages"></ul>
 
     <script>
-        const socket = new WebSocket('ws://localhost:3000');
+        const socket = new WebSocket('wss://your-app-name.onrender.com');
+
 
 
         socket.onopen = () => {
