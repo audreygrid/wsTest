@@ -1,7 +1,8 @@
-const WebSocket = require('ws');
-const http = require('http');
+import WebSocket from 'ws';
+import http from 'http';
 
 const PORT = process.env.PORT || 8080;
+
 const server = http.createServer((req, res) => {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.end('WebSocket Server is running!\n');
@@ -17,7 +18,7 @@ wss.on('connection', (socket) => {
     socket.on('message', (message) => {
         console.log(`Received: ${message}`);
 
-        // Broadcast to all clients except sender
+        // Broadcast message to all connected clients
         wss.clients.forEach((client) => {
             if (client !== socket && client.readyState === WebSocket.OPEN) {
                 client.send(`Echo: ${message}`);
